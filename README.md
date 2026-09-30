@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains a collaborative Machine Learning Operations (MLOps) project developed by DataMinds. The project focuses on building a reproducible machine learning workflow for predicting customer churn using the Telco Customer Churn dataset.
+This repository contains a collaborative Machine Learning Operations (MLOps) project. The project focuses on building a reproducible machine learning workflow for predicting customer churn using the Telco Customer Churn dataset.
 
 ## Team
 
