@@ -1,0 +1,10 @@
+numpy==2.2.6
+pandas==2.2.3
+scikit-learn
+matplotlib
+seaborn
+jupyter
+jupytext
+pytest
+pyyaml==6.0.3
+joblib
