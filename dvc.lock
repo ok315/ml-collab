@@ -1,0 +1,80 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+    - path: data/raw/Telco-Customer-Churn.csv
+      hash: md5
+      md5: 3b0bfab28a8101b4e4fdd08025a5c235
+      size: 970457
+    - path: src/config.py
+      hash: md5
+      md5: f654062b6facfb7fed5704626f42359c
+      size: 497
+    - path: src/data/prepare.py
+      hash: md5
+      md5: 9eebcc4ab40f58067cf6eaef684bd4eb
+      size: 1047
+    - path: src/data/validate.py
+      hash: md5
+      md5: 311ddde978ce8b2d8a9aef05357f1399
+      size: 890
+    params:
+      params.yaml:
+        data.target_column: Churn
+        data.test_size: 0.2
+        project.random_state: 42
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 3f7937557cdb81b9975fdd79b57df402.dir
+      size: 892776
+      nfiles: 2
+  train:
+    cmd: python -m src.models.train
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: fe26dee9f314acb62fa4c23bbf38009a
+      size: 713846
+    - path: src/models/train.py
+      hash: md5
+      md5: b3f7d17911f614fa27e808db8b545088
+      size: 1726
+    params:
+      params.yaml:
+        data.target_column: Churn
+        model:
+          algorithm: random_forest
+          n_estimators: 100
+          max_depth: 10
+          class_weight: balanced
+        project.random_state: 42
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 94609ad482f057107c4dd8a4995569fc
+      size: 6491771
+  evaluate:
+    cmd: python -m src.models.evaluate
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: ac020a37d10b95fa0d00b6d748866378
+      size: 178930
+    - path: models/model.joblib
+      hash: md5
+      md5: 94609ad482f057107c4dd8a4995569fc
+      size: 6491771
+    - path: src/models/evaluate.py
+      hash: md5
+      md5: d9f182c8a9aa393e25d371cc222bd305
+      size: 1350
+    params:
+      params.yaml:
+        data.target_column: Churn
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 4e47b40dfc647b7902139cb9ee92e8c8
+      size: 170
