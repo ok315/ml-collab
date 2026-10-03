@@ -1,4 +1,4 @@
-## MLOps Collaborative Project
+# MLOps Collaborative Project
 
 ## Project Overview
 
