@@ -1,0 +1,36 @@
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+      - src/data/prepare.py
+      - src/data/validate.py
+      - src/config.py
+      - data/raw/Telco-Customer-Churn.csv
+    params:
+      - project.random_state
+      - data.target_column
+      - data.test_size
+    outs:
+      - data/processed
+  train:
+    cmd: python -m src.models.train
+    deps:
+      - src/models/train.py
+      - data/processed/train.csv
+    params:
+      - project.random_state
+      - data.target_column
+      - model
+    outs:
+      - models/model.joblib
+  evaluate:
+    cmd: python -m src.models.evaluate
+    deps:
+      - src/models/evaluate.py
+      - models/model.joblib
+      - data/processed/test.csv
+    params:
+      - data.target_column
+    metrics:
+      - metrics.json:
+          cache: false
