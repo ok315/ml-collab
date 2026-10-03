@@ -30,3 +30,7 @@ Thumbs.db
 # Temporary files
 *.log
 *.tmp
+/models/
+/data/processed/
+metrics.json.bak
+*.joblib
