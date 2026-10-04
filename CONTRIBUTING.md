@@ -54,5 +54,20 @@ Commits should be focused and describe the change clearly.
 
 Install the configured pre-commit hooks with:
 
+## Retrospective
+
+During development, we encountered several issues that helped shape the team's workflow. Pre-commit initially exposed formatting and security-check problems, including Ruff changes and a false-positive high-entropy hash in `metrics.json`. We also had to update the detect-secrets baseline so that known non-secret hashes were handled consistently.
+
+We standardized the repository around:
+- pull requests for normal changes,
+- teammate review before merging,
+- Conventional Commit messages,
+- squash merging,
+- pre-commit checks for formatting, notebooks, large files, and secrets,
+- DVC for dataset tracking,
+- CI checks for linting, tests, data validation, and smoke training.
+
+As a result, `CONTRIBUTING.md` documents the branch workflow, pull-request process, commit conventions, merge strategy, and pre-commit requirements so that contributors follow the same process instead of repeating the issues encountered during development.
+
 ```powershell
 pre-commit install
