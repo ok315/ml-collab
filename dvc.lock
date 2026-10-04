@@ -9,16 +9,16 @@ stages:
       size: 970457
     - path: src/config.py
       hash: md5
-      md5: f654062b6facfb7fed5704626f42359c
-      size: 497
+      md5: 1d627b08b532257713d1a677a81b28ce
+      size: 475
     - path: src/data/prepare.py
       hash: md5
-      md5: 9eebcc4ab40f58067cf6eaef684bd4eb
-      size: 1047
+      md5: 4db95f1fa00e3c347c5faca5b0c492ca
+      size: 1057
     - path: src/data/validate.py
       hash: md5
-      md5: 311ddde978ce8b2d8a9aef05357f1399
-      size: 890
+      md5: cd5fd9beafc3a9c24301a04c22c61a43
+      size: 813
     params:
       params.yaml:
         data.target_column: Churn
@@ -27,20 +27,20 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: 3f7937557cdb81b9975fdd79b57df402.dir
-      size: 892776
+      md5: 33c79d236ff7b25f54e2fd94a75123cd.dir
+      size: 885731
       nfiles: 2
   train:
     cmd: python -m src.models.train
     deps:
     - path: data/processed/train.csv
       hash: md5
-      md5: fe26dee9f314acb62fa4c23bbf38009a
-      size: 713846
+      md5: 94a252cfbf9bf2847e6835168bbfff1b
+      size: 708211
     - path: src/models/train.py
       hash: md5
-      md5: b3f7d17911f614fa27e808db8b545088
-      size: 1726
+      md5: b77858476611ed89c51c75967bbbbd08
+      size: 1978
     params:
       params.yaml:
         data.target_column: Churn
@@ -60,21 +60,21 @@ stages:
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: ac020a37d10b95fa0d00b6d748866378
-      size: 178930
+      md5: 25b3aeca7dd1d5ab1d5db9bb2997172f
+      size: 177520
     - path: models/model.joblib
       hash: md5
       md5: 643b8f7430e55b85dd4b5bc7f5a6fc5e
       size: 1026491
     - path: src/models/evaluate.py
       hash: md5
-      md5: d9f182c8a9aa393e25d371cc222bd305
-      size: 1350
+      md5: c6532236168e7023884af5b87e42aca6
+      size: 1345
     params:
       params.yaml:
         data.target_column: Churn
     outs:
     - path: metrics.json
       hash: md5
-      md5: dfd98c013f92acae46d9339c352dc546
-      size: 169
+      md5: b5ba73d9b3c3abb52ea2cf5c73b16f86
+      size: 162

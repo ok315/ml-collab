@@ -26,8 +26,8 @@ def main():
     )
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    train_df.to_csv(OUT_DIR / "train.csv", index=False)
-    test_df.to_csv(OUT_DIR / "test.csv", index=False)
+    train_df.to_csv(OUT_DIR / "train.csv", index=False, lineterminator="\n")
+    test_df.to_csv(OUT_DIR / "test.csv", index=False, lineterminator="\n")
 
 
 if __name__ == "__main__":

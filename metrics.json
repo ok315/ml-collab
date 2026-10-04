@@ -4,5 +4,5 @@
   "recall": 0.7968,
   "f1": 0.6254,
   "roc_auc": 0.84,
-  "git_commit": "86f33cb2a3ec291c50d244c9a5ec596372a41765"
+  "git_commit": "ffb0ff25ccbed18bb51a726f1eb4245ff0985815"
 }
