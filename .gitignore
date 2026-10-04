@@ -1,36 +1,30 @@
-# Python cache and compiled files
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-
-# Virtual environments
-.venv/
-venv/
-env/
-
-# Jupyter Notebook
+.pytest_cache/
+.ruff_cache/
 .ipynb_checkpoints/
 
-# Environment variables and secrets
+# Environments and secrets
+.venv/
+venv/
 .env
 .env.*
 !.env.example
 
-# Test and coverage outputs
-.pytest_cache/
-.coverage
-htmlcov/
+# Experiment tracking
+mlruns/
+wandb/
 
-# Editor and operating system files
-.vscode/
-.idea/
+# Data and models (tracked by DVC, not Git)
+/data/raw/*.csv
+/data/processed/
+/models/
+*.pkl
+*.joblib
+*.ckpt
+
+# OS and editor
 .DS_Store
 Thumbs.db
-
-# Temporary files
-*.log
-*.tmp
-/models/
-/data/processed/
-metrics.json.bak
-*.joblib
+.vscode/
