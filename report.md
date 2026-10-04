@@ -19,7 +19,8 @@
 
 ## 3. Experiments
 Selection rule: highest ROC-AUC, F1 as tie-breaker. Runs used a fixed seed and split.
-AbdulRahmanTahir's experiments:
+
+### AbdulRahmanTahir's experiments:
 | Experiment | max_depth | n_estimators | accuracy | precision | recall | f1 | roc_auc |
 |---|---|---|---|---|---|---|---|
 | baseline | 10 | 100 | 0.7537 | 0.5254 | 0.7460 | 0.6166 | 0.8376 |
@@ -30,7 +31,16 @@ AbdulRahmanTahir's experiments:
 Why depth-6: best ROC-AUC, F1 and recall, with a consistent trend across the sweep. The
 ROC-AUC gain (+0.0024) is small and within noise, so this is a judgment call.
 Depth-14 was abandoned because it overfits (see section 4).
-Osama's experiments: Osama created the exp/osama-max-depth branch from dev for his own experiment work and used DVC parameter overrides on the Random Forest max_depth setting. His experiment results should be added here from dvc exp show once the three required runs are completed.
+
+### Osama's experiments
+
+| Experiment | max_depth | n_estimators | accuracy | precision | recall | f1 | roc_auc |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| osama-depth-4 | 4 | 100 | 0.7289 | 0.4933 | 0.7834 | 0.6054 | 0.8350 |
+| osama-depth-8 (winner) | 8 | 100 | 0.7516 | 0.5214 | 0.7807 | 0.6253 | 0.8407 |
+| osama-depth-12 | 12 | 100 | 0.7559 | 0.5299 | 0.7112 | 0.6073 | 0.8300 |
+
+Why `osama-depth-8`: it achieved the highest ROC-AUC (`0.8407`) among Osama's three experiments while also keeping a strong F1 score (`0.6253`) and high recall (`0.7807`). Although `osama-depth-12` achieved slightly higher accuracy, its ROC-AUC, recall, and F1 were lower, so `max_depth=8` was selected as the better-balanced experiment.
 
 ## 4. Links
 - Data-update PR: https://github.com/ok315/ml-collab/pull/16
@@ -125,10 +135,14 @@ What we added to CONTRIBUTING.md because of it: TODO
 ### Osama
 
 - Set up the initial project structure and configuration, including the base package layout, `params.yaml`, dependencies, validation module, and project README.
-- Added DVC dataset tracking for the Telco Customer Churn dataset, including the DVC configuration and dataset pointer.
+- Added DVC dataset tracking for the Telco Customer Churn dataset, including the DVC configuration, dataset pointer, and shared remote setup.
 - Added pre-commit quality and security controls, including Ruff linting/formatting, notebook handling, large-file checks, and secret detection (PR #6).
 - Added and documented the team's contribution workflow, including branch conventions, PR review requirements, Conventional Commits, squash merging, and pre-commit usage (PR #7).
-- Maintained and refined the project README and project title documentation.
-- Added the contribution retrospective documenting issues encountered and the improvements made to the workflow.
+- Maintained and refined the project README and project documentation.
+- Added the contribution retrospective documenting workflow issues and the improvements made to `CONTRIBUTING.md`.
+- Participated in teammate PR reviews and reproducibility checks, including validating the DVC pipeline and model metrics.
+- Completed the required real merge-conflict exercise by modifying the same line of `params.yaml` on a separate branch, rebasing onto the updated `dev`, manually resolving the conflict, and documenting the resolution (PR #15).
+- Ran three DVC experiments on `exp/osama-max-depth` using `max_depth=4`, `8`, and `12`, compared the results with `dvc exp show`, and selected `max_depth=8` as the best result in his experiment sweep based on the highest ROC-AUC (`0.8407`) while maintaining a strong F1 score (`0.6253`) and recall (`0.7807`).
+- Promoted the winning `max_depth=8` experiment onto `feat/osama-depth-8` and opened a PR into `dev` with before/after metrics and the full experiment comparison (PR #19).
 
 
