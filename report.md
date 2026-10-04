@@ -30,7 +30,15 @@ AbdulRahmanTahir's experiments:
 Why depth-6: best ROC-AUC, F1 and recall, with a consistent trend across the sweep. The
 ROC-AUC gain (+0.0024) is small and within noise, so this is a judgment call.
 Depth-14 was abandoned because it overfits (see section 4).
-Osama's experiments: Osama created the exp/osama-max-depth branch from dev for his own experiment work and used DVC parameter overrides on the Random Forest max_depth setting. His experiment results should be added here from dvc exp show once the three required runs are completed.
+### Osama's Experiments
+
+| Experiment | max_depth | n_estimators | accuracy | precision | recall | f1 | roc_auc |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| osama-depth-4 | 4 | 100 | 0.7289 | 0.4933 | 0.7834 | 0.6054 | 0.8350 |
+| osama-depth-8 (winner) | 8 | 100 | 0.7516 | 0.5214 | 0.7807 | 0.6253 | 0.8407 |
+| osama-depth-12 | 12 | 100 | 0.7559 | 0.5299 | 0.7112 | 0.6073 | 0.8300 |
+
+Why `osama-depth-8`: it achieved the highest ROC-AUC (`0.8407`) among Osama's three experiments while also maintaining a strong F1 score (`0.6253`) and high recall (`0.7807`). Although `osama-depth-12` achieved slightly higher accuracy, its ROC-AUC, recall, and F1 were lower, so `max_depth=8` was selected as the better-balanced experiment.
 
 ## 4. Links
 - Data-update PR: https://github.com/ok315/ml-collab/pull/16
