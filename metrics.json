@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.7466,
+  "precision": 0.5147,
+  "recall": 0.7968,
+  "f1": 0.6254,
+  "roc_auc": 0.84,
+  "git_commit": "ffb0ff25ccbed18bb51a726f1eb4245ff0985815"
+}

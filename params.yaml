@@ -8,9 +8,9 @@ data:
   target_column: Churn
   test_size: 0.2
 
-# Model configuration
+# Model configuration - conflict resolved by Osama and Abdurrahman
 model:
   algorithm: random_forest
   n_estimators: 100
-  max_depth: 10
+  max_depth: 6
   class_weight: balanced
