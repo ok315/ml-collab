@@ -41,20 +41,21 @@ stages:
       hash: md5
       md5: b77858476611ed89c51c75967bbbbd08
       size: 1978
+      isexec: true
     params:
       params.yaml:
         data.target_column: Churn
         model:
           algorithm: random_forest
           n_estimators: 100
-          max_depth: 6
+          max_depth: 8
           class_weight: balanced
         project.random_state: 42
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 643b8f7430e55b85dd4b5bc7f5a6fc5e
-      size: 1026491
+      md5: 656a7e014898859d29b0f0308e7ee4d1
+      size: 2884123
   evaluate:
     cmd: python -m src.models.evaluate
     deps:
@@ -64,17 +65,18 @@ stages:
       size: 177520
     - path: models/model.joblib
       hash: md5
-      md5: 643b8f7430e55b85dd4b5bc7f5a6fc5e
-      size: 1026491
+      md5: 656a7e014898859d29b0f0308e7ee4d1
+      size: 2884123
     - path: src/models/evaluate.py
       hash: md5
       md5: c6532236168e7023884af5b87e42aca6
       size: 1345
+      isexec: true
     params:
       params.yaml:
         data.target_column: Churn
     outs:
     - path: metrics.json
       hash: md5
-      md5: b5ba73d9b3c3abb52ea2cf5c73b16f86
-      size: 162
+      md5: 5ee3b033c033ef6d569249618ece40ae
+      size: 164
