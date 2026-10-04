@@ -2,7 +2,6 @@ from pathlib import Path
 
 import yaml
 
-
 # Find the repository root directory
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 

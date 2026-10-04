@@ -16,16 +16,30 @@ def build_pipeline(X: pd.DataFrame, model_params: dict, seed: int) -> Pipeline:
     numeric = X.select_dtypes(include="number").columns.tolist()
     categorical = [c for c in X.columns if c not in numeric]
 
-    preprocess = ColumnTransformer([
-        ("num", Pipeline([
-            ("impute", SimpleImputer(strategy="median")),
-            ("scale", StandardScaler()),
-        ]), numeric),
-        ("cat", Pipeline([
-            ("impute", SimpleImputer(strategy="most_frequent")),
-            ("onehot", OneHotEncoder(handle_unknown="ignore")),
-        ]), categorical),
-    ])
+    preprocess = ColumnTransformer(
+        [
+            (
+                "num",
+                Pipeline(
+                    [
+                        ("impute", SimpleImputer(strategy="median")),
+                        ("scale", StandardScaler()),
+                    ]
+                ),
+                numeric,
+            ),
+            (
+                "cat",
+                Pipeline(
+                    [
+                        ("impute", SimpleImputer(strategy="most_frequent")),
+                        ("onehot", OneHotEncoder(handle_unknown="ignore")),
+                    ]
+                ),
+                categorical,
+            ),
+        ]
+    )
     clf = RandomForestClassifier(random_state=seed, **model_params)
     return Pipeline([("preprocess", preprocess), ("model", clf)])
 

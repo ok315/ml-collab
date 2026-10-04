@@ -19,14 +19,10 @@ def validate_dataset(data_path: str, target_column: str) -> pd.DataFrame:
         raise ValueError("Dataset is empty.")
 
     if target_column not in df.columns:
-        raise ValueError(
-            f"Target column '{target_column}' is missing."
-        )
+        raise ValueError(f"Target column '{target_column}' is missing.")
 
     if df[target_column].isna().any():
-        raise ValueError(
-            f"Target column '{target_column}' contains missing values."
-        )
+        raise ValueError(f"Target column '{target_column}' contains missing values.")
 
     return df
 

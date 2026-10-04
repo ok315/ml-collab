@@ -3,8 +3,13 @@ import subprocess
 
 import joblib
 import pandas as pd
-from sklearn.metrics import (accuracy_score, f1_score, precision_score,
-                             recall_score, roc_auc_score)
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 
 from src.config import PROJECT_ROOT, load_params
 
@@ -18,7 +23,7 @@ def git_sha() -> str:
         return subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, text=True
         ).strip()
-    except Exception:
+    except (subprocess.CalledProcessError, OSError):
         return "unknown"
 
 
