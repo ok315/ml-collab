@@ -44,7 +44,7 @@ def main():
         "roc_auc": round(roc_auc_score(y, proba), 4),
         "git_commit": git_sha(),
     }
-    METRICS_PATH.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+    METRICS_PATH.write_text(json.dumps(metrics, indent=2), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":
