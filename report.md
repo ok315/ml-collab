@@ -21,6 +21,7 @@
 Selection rule: highest ROC-AUC, F1 as tie-breaker. Runs used a fixed seed and split.
 
 ### AbdulRahmanTahir's experiments:
+
 | Experiment | max_depth | n_estimators | accuracy | precision | recall | f1 | roc_auc |
 |---|---|---|---|---|---|---|---|
 | baseline | 10 | 100 | 0.7537 | 0.5254 | 0.7460 | 0.6166 | 0.8376 |
@@ -41,6 +42,7 @@ Depth-14 was abandoned because it overfits (see section 4).
 | osama-depth-12 | 12 | 100 | 0.7559 | 0.5299 | 0.7112 | 0.6073 | 0.8300 |
 
 Why `osama-depth-8`: it achieved the highest ROC-AUC (`0.8407`) among Osama's three experiments while also keeping a strong F1 score (`0.6253`) and high recall (`0.7807`). Although `osama-depth-12` achieved slightly higher accuracy, its ROC-AUC, recall, and F1 were lower, so `max_depth=8` was selected as the better-balanced experiment.
+
 
 ## 4. Links
 - Data-update PR: https://github.com/ok315/ml-collab/pull/16
@@ -132,6 +134,7 @@ What we added to CONTRIBUTING.md because of it: TODO
 - Fixed cross-platform line-ending issues affecting DVC pipeline outputs and refreshed the reproducibility files (PRs #10 and #11).
 - Improved repository hygiene, including the pull-request review checklist/template (PR #12).
 - Prepared the reproducibility report and added CI/repository screenshots documenting the workflow and checks (PR #13, in progress).
+- 
 ### Osama
 
 - Set up the initial project structure and configuration, including the base package layout, `params.yaml`, dependencies, validation module, and project README.
